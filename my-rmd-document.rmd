@@ -1,0 +1,36 @@
+---
+title: "My Rmd document"
+author: "Zack Garcia"
+bibliography: mybib.bib
+date: "1/27/2020"
+output: html_document
+---
+
+Here is some inline code: 89 squared is `r 89**2`.
+
+```{r, starwars-plot, fig.cap = "A ggplot of starwars humans"}
+library(tidyverse)
+library(ggplot)
+starwars %>%
+  filter(species=="Human") %>%
+  ggplot() + aes(x = height, y = mass) + geom_point()
+```
+
+We can see in Figure \@ref(fig:starwars-plot) some humans.
+
+```{r starwars-tbl}
+starwars %>%
+  filter(species == "Human") %>%
+  select(name, height, mass, homeworld) %>%
+  knitr::kable(caption = "A knitr kable table of starwars data")
+```
+
+We can see in Table \@ref(tab:starwars-tbl) some humans again and their details. 
+
+```{r, my-fig, fig.cap="My non-code figure"}
+knitr::include_graphics("figures/Hat.png")
+```
+
+We can see in Figure \ref(@fig:my-fig) an image.
+
+[@fuchs2006ethical] is a sample citation. 
